@@ -20,7 +20,7 @@ Route::get('/test', function () {
 });
 
 Route::get('/', function () {
-    return view('layouts.body');
+    return view('portfolio');
 });
 
 // Route::post('/portfolio', [
