@@ -7,7 +7,8 @@
 			<div class="row">
 				<div class="col-sm-6">
 					{{-- Post --}}
-					<form action="" method="POST" class="form-horizontal">
+					<form action="{{ action('ContactsController@store') }}" method="POST" class="form-horizontal">
+					{{csrf_field()}}
 						<div class="form-group row">
 							<div class="col-sm-2"></div>
 							{{-- label email --}}

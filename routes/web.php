@@ -23,12 +23,12 @@ Route::get('/', function () {
     return view('portfolio');
 });
 
-// Route::post('/portfolio', [
-//     'as'=>'portfolio',
-//     'uses'=>'ContactsController@store'
-// ]);
+Route::post('/', [
+    'as'=>'portfolio',
+    'uses'=>'ContactsController@store'
+]);
 
-// Route::get('/portfolio', [
+// Route::get('/', [
 //     'as' => 'portfolio',
 //     'uses' => 'ContactsController@create'
 // ]);
