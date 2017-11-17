@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Contact;
 use Illuminate\Http\Request;
+use App\Http\Requests\ContactRequest;
 
 class ContactsController extends Controller
 {
@@ -34,14 +35,13 @@ class ContactsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        // $request->validate([
-        //     'mail' => 'required|email',
-        //     'subject' => 'required|max:255',
-        //     'message'=> 'required'
-        // ]);
-        dd($request);
+    public function store(ContactRequest $request)
+    {   
+        $contact = Contact::create($request->all());
+        if(! $request->fails()){
+            $contact->save();
+        }
+        return redirect()->route('/#contacter');
     }
 
     /**
