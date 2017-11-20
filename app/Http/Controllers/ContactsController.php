@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Contact;
@@ -36,12 +35,11 @@ class ContactsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(ContactRequest $request)
-    {   
+    {
         $contact = Contact::create($request->all());
-        if(! $request->fails()){
-            $contact->save();
-        }
-        return redirect()->route('/#contacter');
+        $contact->save();
+        $request->session()->flash('alert-success', 'Message is sended');
+        return redirect('/');
     }
 
     /**

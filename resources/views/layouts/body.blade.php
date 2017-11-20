@@ -12,9 +12,10 @@
 </head>
 
 <body>
-	@include('partials.header')
-	@yield('content')
-	{{--  @include('partials.footer')  --}}
+	@include('messages.message')
+	@include('partials.header') 
+	@yield('content') 
+	{{-- @include('partials.footer') --}} 
 	@include('forms.form')
 	<script src="{{url('js/app.js')}}"></script>
 </body>
