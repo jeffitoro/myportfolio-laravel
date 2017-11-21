@@ -23,7 +23,7 @@
 			</div>
 		</div>
 	</section>
-	<section class="container-fluid about-me" id="conception-services">
+	<section class="about-me container-fluid" id="conception-services">
 		<div class="row">
 			<div class="col-sm-6 img">
 				<div class="about-me-txt">

@@ -7941,6 +7941,28 @@ header .bar-button {
   color: #670202;
 }
 
+.projets {
+  color: #670202;
+  padding: 40px 5%;
+  text-align: center;
+  font-family: 'Raleway';
+}
+
+.projets #titre {
+  text-align: left;
+  font-family: 'Montserrat';
+  margin: 30px 0;
+}
+
+.projets #titre .border {
+  margin: 0 auto 0 0;
+  width: 20%;
+}
+
+.projets img {
+  width: 100%;
+}
+
 footer {
   text-align: center;
   background: url("../img/footer-red2.png");
