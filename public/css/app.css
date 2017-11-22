@@ -7767,6 +7767,10 @@ header {
   font-size: 14px;
 }
 
+header i.fa {
+  padding-right: 20px;
+}
+
 header .navbar-fixed-top {
   background-color: rgba(255, 255, 255, 0.69);
   font-family: 'Montserrat';

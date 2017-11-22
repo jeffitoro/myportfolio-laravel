@@ -30,7 +30,7 @@
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
                         {{--  {{ config('app.name', 'Portfolio Mode Admin Jeff') }}  --}}
-                        Portfolio Mode Admin Jeff
+                        Lien Portfolio
                     </a>
                 </div>
 

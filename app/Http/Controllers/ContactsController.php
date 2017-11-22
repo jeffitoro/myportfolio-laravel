@@ -38,7 +38,7 @@ class ContactsController extends Controller
     {
         $contact = Contact::create($request->all());
         $contact->save();
-        $request->session()->flash('alert-success', '<h3>Message is sended</h3>');
+        $request->session()->flash('alert-success', 'Message is sended');
         return redirect('/');
     }
 

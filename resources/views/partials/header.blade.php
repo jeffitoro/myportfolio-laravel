@@ -25,6 +25,20 @@
 					<a href="#lesprojets">Mes projets</a>
 				</li>
 			</ul>
+			@if(Auth::check())
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="{{ route('home') }}">home</a></li>
+				<li>
+					<a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+						<i class="fa fa-sign-out" aria-hidden="true"></i>
+					</a>
+					<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+						{{ csrf_field() }}
+					</form>
+				</li>
+			</ul>
+			@endif
 		</nav>
 		<nav class="bar2 navbar navbar-default navbar-fixed-top" role="navigation">
 			<!-- Brand and toggle get grouped for better mobile display -->
