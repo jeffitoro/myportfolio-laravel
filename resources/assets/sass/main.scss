@@ -231,7 +231,16 @@ header{
         width: 100%;
     }
 }
-
+.admin{
+    .nav-center{
+        text-align: center;
+        .nav-pills{
+            display: inline-block;
+            margin: 0;
+            padding: 0;
+        }
+    }
+}
 footer{
     // background: url("../../../public/img/imgBG.jpg");
     text-align: center;

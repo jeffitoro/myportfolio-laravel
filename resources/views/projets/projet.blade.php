@@ -1,4 +1,4 @@
-{{-- @section('projets') --}}
+{{--  @section('projets')  --}}
 <section class="projets container-fluid" id="lesprojets">
 	<div id="titre">
 		<div class="container-fluid">
@@ -6,9 +6,9 @@
 			<div class="border"></div>
 		</div>
 	</div>
-    <div id="projets">
+	<div id="projets">
 		<projets></projets>
-    </div>
-	
+	</div>
+
 </section>
-{{-- @endsection --}}
+{{--  @endsection  --}}

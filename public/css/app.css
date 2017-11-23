@@ -7967,6 +7967,16 @@ header .bar-button {
   width: 100%;
 }
 
+.admin .nav-center {
+  text-align: center;
+}
+
+.admin .nav-center .nav-pills {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+}
+
 footer {
   text-align: center;
   background: url("../img/footer-red2.png");
