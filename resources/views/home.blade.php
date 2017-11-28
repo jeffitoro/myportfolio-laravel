@@ -5,21 +5,21 @@
 	</div>
 	<div class="nav-center">
 		<ul class="nav nav-pills">
-			<li class="active">
+			<li class="">
 				<a data-toggle="pill" href="#home">Mes Contactes</a>
 			</li>
-			<li>
+			<li class="active">
 				<a data-toggle="pill" href="#menu1">Mes Projets</a>
 			</li>
 		</ul>
 	</div>
 
 	<div class="tab-content">
-		<div id="home" class="tab-pane fade in active">
+		<div id="home" class="tab-pane fade">
 			<h3>HOME</h3>
 			<p>Some content.</p>
 		</div>
-		<div id="menu1" class="tab-pane fade">
+		<div id="menu1" class="tab-pane fade in active">
             <div class="col-md-10 col-md-offset-1">
 	    		@include('projets.projet')
 		    </div>

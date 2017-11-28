@@ -42640,6 +42640,10 @@ module.exports = function normalizeComponent (
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__OneProjet_vue__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__OneProjet_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__OneProjet_vue__);
 //
 //
 //
@@ -42654,6 +42658,154 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ["isconnect"],
+  mounted: function mounted() {
+    console.log("Component mounted.");
+  },
+
+  components: {
+    oneProjet: __WEBPACK_IMPORTED_MODULE_1__OneProjet_vue___default.a
+  },
+  data: function data() {
+    return {
+      projets: []
+    };
+  },
+
+  methods: {}
+});
+
+/***/ }),
+/* 41 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c(
+      "button",
+      {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.isconnect,
+            expression: "isconnect"
+          }
+        ]
+      },
+      [_vm._m(0)]
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
+      _c(
+        "div",
+        { staticClass: "col-sm-12" },
+        _vm._l(_vm.projets, function(projet) {
+          return _c("one-projet", {
+            key: projet.id,
+            attrs: { isconnect: _vm.isconnect }
+          })
+        })
+      )
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("a", { attrs: { href: "" } }, [
+      _vm._v("\n        Add "),
+      _c("i", {
+        staticClass: "fa fa-plus-square",
+        attrs: { "aria-hidden": "true" }
+      })
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-f2e1a240", module.exports)
+  }
+}
+
+/***/ }),
+/* 42 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 43 */,
+/* 44 */,
+/* 45 */,
+/* 46 */,
+/* 47 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(39)
+/* script */
+var __vue_script__ = __webpack_require__(48)
+/* template */
+var __vue_template__ = __webpack_require__(49)
+/* template functional */
+  var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/OneProjet.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-736af2cb", Component.options)
+  } else {
+    hotAPI.reload("data-v-736af2cb", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 48 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
@@ -42677,61 +42829,79 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ["isconnect"],
   mounted: function mounted() {
     console.log("Component mounted.");
-  }
+  },
+
+  methods: {}
 });
 
 /***/ }),
-/* 41 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "col-sm-4" }, [
+    _c("img", {
+      staticStyle: { color: "black" },
+      attrs: { src: "img/default.png", alt: "" }
+    }),
+    _vm._v(" "),
+    _vm._m(0),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.isconnect,
+            expression: "isconnect"
+          }
+        ],
+        staticClass: "buttons"
+      },
+      [_vm._m(1), _vm._v(" "), _vm._m(2)]
+    )
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-sm-12" }, [
-        _c("div", { staticClass: "col-sm-4" }, [
-          _c("img", { attrs: { src: "img/img-description01.jpg", alt: "" } }),
-          _vm._v(" "),
-          _c("div", { staticClass: "img-description" }, [
-            _c("p", [_vm._v("Images Description...")])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-4" }, [
-          _c("img", { attrs: { src: "img/img-description02.png", alt: "" } }),
-          _vm._v(" "),
-          _c("div", { staticClass: "img-description" }, [
-            _c("p", [_vm._v("Images Description...")])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-4" }, [
-          _c("img", { attrs: { src: "img/img-description01.jpg", alt: "" } }),
-          _vm._v(" "),
-          _c("div", { staticClass: "img-description" }, [
-            _c("p", [_vm._v("Images Description...")])
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-12" }, [
-        _c("div", { staticClass: "col-sm-4" }, [
-          _c("img", { attrs: { src: "img/img-description02.png", alt: "" } }),
-          _vm._v(" "),
-          _c("div", { staticClass: "img-description" }, [
-            _c("p", [_vm._v("Images Description...")])
-          ])
-        ])
+    return _c("div", { staticClass: "img-description" }, [
+      _c("p", [_vm._v("Images Description...")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("button", [
+      _c("a", { attrs: { href: "" } }, [
+        _c("i", {
+          staticClass: "fa fa-pencil-square-o",
+          attrs: { "aria-hidden": "true" }
+        })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("button", [
+      _c("a", { attrs: { href: "" } }, [
+        _c("i", {
+          staticClass: "fa fa-trash-o",
+          attrs: { "aria-hidden": "true" }
+        })
       ])
     ])
   }
@@ -42741,15 +42911,9 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-f2e1a240", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-736af2cb", module.exports)
   }
 }
-
-/***/ }),
-/* 42 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);

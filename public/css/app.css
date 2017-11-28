@@ -8035,6 +8035,14 @@ footer textarea:-moz-placeholder {
   color: blue;
 }
 
+.buttons {
+  display: inline-block;
+}
+
+.buttons button {
+  float: left;
+}
+
 @media (max-width: 786px) {
   .bar1 {
     float: none;
