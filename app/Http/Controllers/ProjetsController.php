@@ -14,7 +14,8 @@ class ProjetsController extends Controller
      */
     public function index()
     {
-        //
+        $projets = Projet::all();
+        return $projets;
     }
 
     /**

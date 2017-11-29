@@ -42672,6 +42672,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   components: {
     oneProjet: __WEBPACK_IMPORTED_MODULE_1__OneProjet_vue___default.a
   },
+  created: function created() {
+    var self = this;
+    __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get("/projet/read").then(function (response) {
+      self.projets = response.data;
+    }).catch(function (error) {
+      console.log(error);
+    });
+  },
   data: function data() {
     return {
       oneprojet: {
@@ -42686,11 +42694,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   methods: {
     addProjet: function addProjet() {
       var self = this;
-      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post("api/projet/insert", self.oneprojet).then(function (response) {
+      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post("/projet/insert", self.oneprojet).then(function (response) {
         self.projets.push(response.data);
-        console.log(response.data);
       }).catch(function (error) {
-        console.log("error submit");
         console.log(error);
       });
     }

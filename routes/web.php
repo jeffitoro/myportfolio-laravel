@@ -37,4 +37,9 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-//Route::resource('/projet','ProjetsController');
+// Route::resource('/projet/insert','ProjetsController');
+Route::post('projet/insert', [
+    'as' => 'projetinsert',
+    'uses' => 'ProjetsController@store'
+]);
+Route::get('projet/read','ProjetsController@index');

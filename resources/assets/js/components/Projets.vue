@@ -25,6 +25,17 @@ export default {
   components: {
     oneProjet: oneprojet
   },
+  created: function() {
+    let self = this;
+    axios
+      .get("/projet/read")
+      .then(function(response) {
+        self.projets = response.data;
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  },
   data() {
     return {
       oneprojet: {
@@ -39,13 +50,11 @@ export default {
     addProjet: function() {
       let self = this;
       axios
-        .post("api/projet/insert",self.oneprojet)
-          .then(function(response) {
-            self.projets.push(response.data);
-            console.log(response.data);
+        .post("/projet/insert", self.oneprojet)
+        .then(function(response) {
+          self.projets.push(response.data);
         })
         .catch(function(error) {
-          console.log("error submit");
           console.log(error);
         });
     }
