@@ -35,7 +35,9 @@ class ProjetsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $projet = Projet::create($request->all());
+        $projet->save();
+        return $projet;
     }
 
     /**

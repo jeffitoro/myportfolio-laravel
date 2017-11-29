@@ -17,7 +17,7 @@ class CreateProjetsTable extends Migration
             $table->increments('id');
             $table->char('title', 100);
             $table->string('description');
-            $table->date('deadline');
+            $table->int('deadline');
             $table->timestamps();
         });
     }

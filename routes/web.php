@@ -36,3 +36,5 @@ Route::post('/', [
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//Route::resource('/projet','ProjetsController');
