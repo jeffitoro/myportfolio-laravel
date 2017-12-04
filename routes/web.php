@@ -43,3 +43,4 @@ Route::post('projet/insert', [
     'uses' => 'ProjetsController@store'
 ]);
 Route::get('projet/read','ProjetsController@index');
+Route::delete('projet/delete/{id}','ProjetsController@destroy');

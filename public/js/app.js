@@ -404,6 +404,12 @@ module.exports = g;
 /* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
+module.exports = __webpack_require__(18);
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {
 
@@ -499,12 +505,6 @@ utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
 module.exports = defaults;
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(18);
 
 /***/ }),
 /* 4 */
@@ -1136,7 +1136,7 @@ try {
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
-window.axios = __webpack_require__(3);
+window.axios = __webpack_require__(2);
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
@@ -30942,7 +30942,7 @@ if (typeof jQuery === 'undefined') {
 var utils = __webpack_require__(0);
 var bind = __webpack_require__(4);
 var Axios = __webpack_require__(20);
-var defaults = __webpack_require__(2);
+var defaults = __webpack_require__(3);
 
 /**
  * Create an instance of Axios
@@ -31025,7 +31025,7 @@ function isSlowBuffer (obj) {
 "use strict";
 
 
-var defaults = __webpack_require__(2);
+var defaults = __webpack_require__(3);
 var utils = __webpack_require__(0);
 var InterceptorManager = __webpack_require__(29);
 var dispatchRequest = __webpack_require__(30);
@@ -31557,7 +31557,7 @@ module.exports = InterceptorManager;
 var utils = __webpack_require__(0);
 var transformData = __webpack_require__(31);
 var isCancel = __webpack_require__(8);
-var defaults = __webpack_require__(2);
+var defaults = __webpack_require__(3);
 
 /**
  * Throws a `Cancel` if cancellation has been requested.
@@ -42640,7 +42640,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__OneProjet_vue__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__OneProjet_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__OneProjet_vue__);
@@ -42675,8 +42675,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   created: function created() {
     var self = this;
     __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get("/projet/read").then(function (response) {
+      console.log('--GETprojet--');
+      console.dir(response.data);
       self.projets = response.data;
     }).catch(function (error) {
+      console.log("error log");
       console.log(error);
     });
   },
@@ -42685,7 +42688,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       oneprojet: {
         title: "title projet",
         description: "description... longue",
-        deadline: 30
+        deadline: 30,
+        img_url: "img/default.png"
       },
       projets: []
     };
@@ -42695,8 +42699,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     addProjet: function addProjet() {
       var self = this;
       __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post("/projet/insert", self.oneprojet).then(function (response) {
+        console.log('--POSTprojet--');
+        console.dir(response.data);
         self.projets.push(response.data);
       }).catch(function (error) {
+        console.log("error post");
         console.log(error);
       });
     }
@@ -42757,8 +42764,8 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
 //
 //
 //
@@ -42779,13 +42786,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["isconnect"],
+  props: ["isconnect", "projetprop", "index"],
   mounted: function mounted() {
     console.log("Component mounted.");
   },
 
-  methods: {}
+  methods: {
+    deleteProjet: function deleteProjet() {
+      var _this = this;
+
+      self = this;
+      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.delete('/projet/delete/' + self.projetprop.id).then(function (response) {
+        _this.$el.parentElement.removeChild(_this.$el);
+      }).catch(function (error) {
+        console.log(error);
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -42799,10 +42819,16 @@ var render = function() {
   return _c("div", { staticClass: "col-sm-4" }, [
     _c("img", {
       staticStyle: { color: "black" },
-      attrs: { src: "img/default.png", alt: "" }
+      attrs: { src: _vm.projetprop.img_url, alt: "" }
     }),
     _vm._v(" "),
-    _vm._m(0),
+    _c("div", { staticClass: "title" }, [
+      _c("h2", [_vm._v(_vm._s(_vm.projetprop.title))])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "img-description" }, [
+      _c("p", [_vm._v(_vm._s(_vm.projetprop.description))])
+    ]),
     _vm._v(" "),
     _c(
       "div",
@@ -42817,46 +42843,47 @@ var render = function() {
         ],
         staticClass: "buttons"
       },
-      [_vm._m(1), _vm._v(" "), _vm._m(2)]
+      [
+        _c(
+          "button",
+          {
+            on: {
+              click: function($event) {
+                $event.preventDefault()
+                _vm.editProjet($event)
+              }
+            }
+          },
+          [
+            _c("i", {
+              staticClass: "fa fa-pencil-square-o",
+              attrs: { "aria-hidden": "true" }
+            })
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            on: {
+              click: function($event) {
+                $event.preventDefault()
+                _vm.deleteProjet($event)
+              }
+            }
+          },
+          [
+            _c("i", {
+              staticClass: "fa fa-trash-o",
+              attrs: { "aria-hidden": "true" }
+            })
+          ]
+        )
+      ]
     )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "img-description" }, [
-      _c("p", [_vm._v("Images Description...")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("button", [
-      _c("a", { attrs: { href: "" } }, [
-        _c("i", {
-          staticClass: "fa fa-pencil-square-o",
-          attrs: { "aria-hidden": "true" }
-        })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("button", [
-      _c("a", { attrs: { href: "" } }, [
-        _c("i", {
-          staticClass: "fa fa-trash-o",
-          attrs: { "aria-hidden": "true" }
-        })
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -42911,7 +42938,11 @@ var render = function() {
         _vm._l(_vm.projets, function(projet, index) {
           return _c("one-projet", {
             key: projet.id,
-            attrs: { isconnect: _vm.isconnect }
+            attrs: {
+              isconnect: _vm.isconnect,
+              projetprop: projet,
+              index: index
+            }
           })
         })
       )

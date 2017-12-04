@@ -3,8 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia\Interfaces\HasMedia;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
-class Projet extends Model
+class Projet extends Model implements HasMedia
 {
-    protected $fillable = ['title', 'description', 'deadline'];
+    use HasMediaTrait;
+    protected $fillable = ['title', 'description', 'deadline', 'img_url'];
 }

@@ -61,7 +61,12 @@ return [
             'secret' => env('AWS_SECRET'),
             'region' => env('AWS_REGION'),
             'bucket' => env('AWS_BUCKET'),
-        ],
+        ]
+        // ,
+        // 'media' => [
+        //     'driver' => 'local',
+        //     'root' => public_path() . '/media',
+        // ]
 
     ],
 

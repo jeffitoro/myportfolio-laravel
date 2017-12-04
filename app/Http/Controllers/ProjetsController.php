@@ -35,7 +35,7 @@ class ProjetsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   
         $projet = Projet::create($request->all());
         $projet->save();
         return $projet;
@@ -81,8 +81,9 @@ class ProjetsController extends Controller
      * @param  \App\Projet  $projet
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Projet $projet)
+    public function destroy($id)
     {
-        //
+        $projet = Projet::findOrFail($id);
+        $projet->delete();
     }
 }

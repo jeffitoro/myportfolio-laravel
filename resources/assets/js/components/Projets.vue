@@ -7,7 +7,7 @@
     </button>
     <div class="row">
 		  <div class="col-sm-12">
-        <one-projet :isconnect="isconnect" v-for="(projet,index) in projets" v-bind:key="projet.id"></one-projet>
+        <one-projet :isconnect="isconnect" v-for="(projet,index) in projets" v-bind:key="projet.id" v-bind:projetprop="projet" :index="index"></one-projet>
     	</div>
 	  </div>
   </div>
@@ -30,9 +30,12 @@ export default {
     axios
       .get("/projet/read")
       .then(function(response) {
+        console.log('--GETprojet--');
+        console.dir(response.data);
         self.projets = response.data;
       })
       .catch(function(error) {
+          console.log("error log");        
         console.log(error);
       });
   },
@@ -41,7 +44,8 @@ export default {
       oneprojet: {
         title: "title projet",
         description: "description... longue",
-        deadline: 30
+        deadline: 30,
+        img_url: "img/default.png"
       },
       projets: []
     };
@@ -52,9 +56,12 @@ export default {
       axios
         .post("/projet/insert", self.oneprojet)
         .then(function(response) {
+          console.log('--POSTprojet--');
+          console.dir(response.data);
           self.projets.push(response.data);
         })
         .catch(function(error) {
+          console.log("error post");
           console.log(error);
         });
     }
