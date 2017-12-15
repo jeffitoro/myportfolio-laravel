@@ -21,3 +21,5 @@ Route::post('projet/insert', [
     'as' => 'projetinsert',
     'uses' => 'ProjetsController@store'
 ]);
+
+// Route::patch('/projet/edit/{id}', function(){echo "hi";});

@@ -1128,6 +1128,7 @@ try {
   window.$ = window.jQuery = __webpack_require__(16);
 
   __webpack_require__(17);
+  // require('bootstrap');
 } catch (e) {}
 
 /**
@@ -42622,9 +42623,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-f2e1a240", Component.options)
+    hotAPI.createRecord("data-v-833b31ea", Component.options)
   } else {
-    hotAPI.reload("data-v-f2e1a240", Component.options)
+    hotAPI.reload("data-v-833b31ea", Component.options)
 ' + '  }
   module.hot.dispose(function (data) {
     disposed = true
@@ -42675,7 +42676,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   created: function created() {
     var self = this;
     __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get("/projet/read").then(function (response) {
-      console.log('--GETprojet--');
+      console.log("--GETprojet--");
       console.dir(response.data);
       self.projets = response.data;
     }).catch(function (error) {
@@ -42699,7 +42700,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     addProjet: function addProjet() {
       var self = this;
       __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post("/projet/insert", self.oneprojet).then(function (response) {
-        console.log('--POSTprojet--');
+        console.log("--POSTprojet--");
         console.dir(response.data);
         self.projets.push(response.data);
       }).catch(function (error) {
@@ -42746,9 +42747,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-736af2cb", Component.options)
+    hotAPI.createRecord("data-v-0350cc36", Component.options)
   } else {
-    hotAPI.reload("data-v-736af2cb", Component.options)
+    hotAPI.reload("data-v-0350cc36", Component.options)
 ' + '  }
   module.hot.dispose(function (data) {
     disposed = true
@@ -42785,6 +42786,58 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -42793,14 +42846,70 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   mounted: function mounted() {
     console.log("Component mounted.");
   },
+  data: function data() {
+    return {
+      projet: {
+        title: "",
+        description: "",
+        deadline: "",
+        img_url: ""
+      },
+      image: ""
+    };
+  },
 
   methods: {
+    onFileChange: function onFileChange(e) {
+      var files = e.target.files || e.dataTransfer.files;
+      if (!files.length) return;
+      this.createImage(files[0]);
+      this.img_url = files[0].name;
+    },
+    createImage: function createImage(file) {
+      var image = new Image();
+      var reader = new FileReader();
+      var vm = this;
+
+      reader.onload = function (e) {
+        vm.image = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    },
+
+    removeImage: function removeImage(e) {
+      this.image = "";
+    },
     deleteProjet: function deleteProjet() {
       var _this = this;
 
       self = this;
-      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.delete('/projet/delete/' + self.projetprop.id).then(function (response) {
+      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.delete("/projet/delete/" + self.projetprop.id).then(function (response) {
         _this.$el.parentElement.removeChild(_this.$el);
+      }).catch(function (error) {
+        console.log(error);
+      });
+    },
+    initUpdate: function initUpdate() {
+      $("#taskModalUpdate").addClass("is-active");
+      $("#taskModalUpdate").modal();
+    },
+
+    closeModal: function closeModal() {
+      $("#taskModalUpdate").removeClass("modal");
+      $("#taskModalUpdate").removeClass("is-active");
+    },
+    updateTask: function updateTask() {
+      var self = this;
+      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post("/projet/edit/" + self.projetprop.id, {
+        title: self.projetprop.title,
+        description: self.projetprop.description,
+        deadline: self.projetprop.deadline,
+        image: self.image,
+        img_url: self.img_url
+      }).then(function (response) {
+        // console.log("ici");
+        // this.projetprop.img_url = response;
+        console.log(response);
       }).catch(function (error) {
         console.log(error);
       });
@@ -42816,80 +42925,330 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "col-sm-4" }, [
-    _c("img", {
-      staticStyle: { color: "black" },
-      attrs: { src: _vm.projetprop.img_url, alt: "" }
-    }),
-    _vm._v(" "),
-    _c("div", { staticClass: "title" }, [
-      _c("h2", [_vm._v(_vm._s(_vm.projetprop.title))])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "img-description" }, [
-      _c("p", [_vm._v(_vm._s(_vm.projetprop.description))])
+  return _c("div", [
+    _c("div", { staticClass: "col-sm-4" }, [
+      _c("img", {
+        staticStyle: { color: "black" },
+        attrs: { src: _vm.projetprop.img_url, alt: "" }
+      }),
+      _vm._v(" "),
+      _c("div", { staticClass: "title" }, [
+        _c("h2", [_vm._v(_vm._s(_vm.projetprop.title))])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "img-description" }, [
+        _c("p", [_vm._v(_vm._s(_vm.projetprop.description))])
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: _vm.isconnect,
+              expression: "isconnect"
+            }
+          ],
+          staticClass: "buttons"
+        },
+        [
+          _c(
+            "button",
+            {
+              on: {
+                click: function($event) {
+                  _vm.initUpdate()
+                }
+              }
+            },
+            [
+              _c("i", {
+                staticClass: "fa fa-pencil-square-o",
+                attrs: { "aria-hidden": "true" }
+              })
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  _vm.deleteProjet($event)
+                }
+              }
+            },
+            [
+              _c("i", {
+                staticClass: "fa fa-trash-o",
+                attrs: { "aria-hidden": "true" }
+              })
+            ]
+          )
+        ]
+      )
     ]),
     _vm._v(" "),
     _c(
       "div",
       {
-        directives: [
-          {
-            name: "show",
-            rawName: "v-show",
-            value: _vm.isconnect,
-            expression: "isconnect"
-          }
-        ],
-        staticClass: "buttons"
+        staticClass: "modal fade",
+        attrs: { id: "taskModalUpdate", role: "dialog" }
       },
       [
-        _c(
-          "button",
-          {
-            on: {
-              click: function($event) {
-                $event.preventDefault()
-                _vm.editProjet($event)
-              }
-            }
-          },
-          [
-            _c("i", {
-              staticClass: "fa fa-pencil-square-o",
-              attrs: { "aria-hidden": "true" }
-            })
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            on: {
-              click: function($event) {
-                $event.preventDefault()
-                _vm.deleteProjet($event)
-              }
-            }
-          },
-          [
-            _c("i", {
-              staticClass: "fa fa-trash-o",
-              attrs: { "aria-hidden": "true" }
-            })
-          ]
-        )
+        _c("div", { staticClass: "modal-dialog" }, [
+          _c("div", { staticClass: "modal-content" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c(
+              "form",
+              {
+                attrs: {
+                  action: "",
+                  method: "POST",
+                  enctype: "multipart/form-data"
+                },
+                on: {
+                  submit: function($event) {
+                    $event.preventDefault()
+                    _vm.updateTask($event)
+                  }
+                }
+              },
+              [
+                _c("div", { staticClass: "modal-body" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c(
+                      "label",
+                      { staticClass: "control-label", attrs: { for: "title" } },
+                      [_vm._v("Title")]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.projetprop.title,
+                          expression: "projetprop.title"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "text",
+                        name: "title",
+                        id: "title",
+                        required: ""
+                      },
+                      domProps: { value: _vm.projetprop.title },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.projetprop, "title", $event.target.value)
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c(
+                      "label",
+                      { staticClass: "control-label", attrs: { for: "image" } },
+                      [_vm._v("Image")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "label",
+                      {
+                        staticClass: "btn btn-default form-control",
+                        staticStyle: { "padding-bottom": "30%" }
+                      },
+                      [
+                        !_vm.image
+                          ? _c("div", [
+                              _c("img", {
+                                staticStyle: {
+                                  "max-width": "200px",
+                                  "max-height": "200px"
+                                },
+                                attrs: { src: _vm.projetprop.img_url, alt: "" }
+                              }),
+                              _c("br"),
+                              _vm._v(" "),
+                              _c("input", {
+                                ref: "myimg",
+                                attrs: {
+                                  accept: "image/*",
+                                  name: "image",
+                                  id: "image",
+                                  type: "file",
+                                  multiple: "multiple"
+                                },
+                                on: { change: _vm.onFileChange }
+                              })
+                            ])
+                          : _c("div", [
+                              _c("img", {
+                                staticStyle: {
+                                  "max-width": "200px",
+                                  "max-height": "200px"
+                                },
+                                attrs: { src: _vm.image }
+                              }),
+                              _vm._v(" "),
+                              _c("button", { on: { click: _vm.removeImage } }, [
+                                _vm._v("Remove image")
+                              ])
+                            ])
+                      ]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c(
+                      "label",
+                      {
+                        staticClass: "control-label",
+                        attrs: { for: "description" }
+                      },
+                      [_vm._v("Description")]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.projetprop.description,
+                          expression: "projetprop.description"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "text",
+                        name: "description",
+                        id: "description",
+                        required: ""
+                      },
+                      domProps: { value: _vm.projetprop.description },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.projetprop,
+                            "description",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c(
+                      "label",
+                      {
+                        staticClass: "control-label",
+                        attrs: { for: "deadline" }
+                      },
+                      [_vm._v("Deadline")]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.projetprop.deadline,
+                          expression: "projetprop.deadline"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "text",
+                        name: "deadline",
+                        id: "deadline",
+                        required: ""
+                      },
+                      domProps: { value: _vm.projetprop.deadline },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.projetprop,
+                            "deadline",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ])
+                ]),
+                _vm._v(" "),
+                _vm._m(1)
+              ]
+            )
+          ])
+        ])
       ]
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("×")]
+      ),
+      _vm._v(" "),
+      _c("h4", { staticClass: "modal-title" }, [_vm._v("Mode Edit")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-footer" }, [
+      _c(
+        "button",
+        { staticClass: "btn btn-default", attrs: { type: "submit" } },
+        [_vm._v("Edit")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-default",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("Close")]
+      )
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-736af2cb", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-0350cc36", module.exports)
   }
 }
 
@@ -42955,7 +43314,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-f2e1a240", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-833b31ea", module.exports)
   }
 }
 

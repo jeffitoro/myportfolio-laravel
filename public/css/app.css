@@ -7724,7 +7724,7 @@ button.close {
 /**color
 *letter bar fixed
 *txt presentation
-*compétences
+*compétences 
 *button
 */
 /**color 
@@ -7735,6 +7735,10 @@ button.close {
 *services
 *BG bar fixed
 */
+input[type=file].form-control {
+  height: auto;
+}
+
 .alert {
   z-index: 4;
   position: absolute;

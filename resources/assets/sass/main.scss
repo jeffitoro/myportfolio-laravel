@@ -1,5 +1,9 @@
 @import "./filescss/variables-design";
 @import "./filescss/bootstrap-imports";
+// @import "~bootstrap-sass/assets/stylesheets/bootstrap";
+// @import "~bootstrap/scss/bootstrap";
+
+
 @import url('https://fonts.googleapis.com/css?family=Raleway');
 @import url('https://fonts.googleapis.com/css?family=Baloo+Bhaijaan');
 @import url('https://fonts.googleapis.com/css?family=Gloria+Hallelujah');
@@ -9,7 +13,7 @@ $colorRougeFond: #c3220d;
 /**color
 *letter bar fixed
 *txt presentation
-*compétences
+*compétences 
 *button
 */
 $colorFond: #670202;
@@ -26,6 +30,28 @@ $colorAB: #00dfff;
 $colorSBfixed: white;
 $colorLetter:black;
 
+// .btn-file {
+//     position: relative;
+//     overflow: hidden;
+// }
+// .btn-file input[type=file] {
+//     position: absolute;
+//     top: 0;
+//     right: 0;
+//     min-width: 100%;
+//     min-height: 100%;
+//     font-size: 100px;
+//     text-align: right;
+//     filter: alpha(opacity=0);
+//     opacity: 0;
+//     outline: none;
+//     background: white;
+//     cursor: inherit;
+//     display: block;
+// }
+input[type=file].form-control {
+    height: auto;
+}
 .alert{
     h3{
         text-align: center;

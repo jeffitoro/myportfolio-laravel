@@ -9,7 +9,7 @@
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+ */
 
 Route::get('/welcome', function () {
     return view('welcome');
@@ -24,8 +24,8 @@ Route::get('/', function () {
 });
 
 Route::post('/', [
-    'as'=>'portfolio',
-    'uses'=>'ContactsController@store'
+    'as' => 'portfolio',
+    'uses' => 'ContactsController@store'
 ]);
 
 // Route::get('/', [
@@ -42,5 +42,6 @@ Route::post('projet/insert', [
     'as' => 'projetinsert',
     'uses' => 'ProjetsController@store'
 ]);
-Route::get('projet/read','ProjetsController@index');
-Route::delete('projet/delete/{id}','ProjetsController@destroy');
+Route::get('projet/read', 'ProjetsController@index');
+Route::delete('projet/delete/{id}', 'ProjetsController@destroy');
+Route::post('projet/edit/{id}','ProjetsController@update');
