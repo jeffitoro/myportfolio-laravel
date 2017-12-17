@@ -42676,9 +42676,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   created: function created() {
     var self = this;
     __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get("/projet/read").then(function (response) {
-      console.log("--GETprojet--");
+      console.log("--GETprojetRead--");
       console.dir(response.data);
       self.projets = response.data;
+      console.log("--EndGetProjetRead--");
     }).catch(function (error) {
       console.log("error log");
       console.log(error);
@@ -42700,9 +42701,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     addProjet: function addProjet() {
       var self = this;
       __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post("/projet/insert", self.oneprojet).then(function (response) {
-        console.log("--POSTprojet--");
+        console.log("--POSTprojetInsert--");
         console.dir(response.data);
         self.projets.push(response.data);
+        console.dir(self.projets);
+        console.log("--EndPostProjetInsert--");
       }).catch(function (error) {
         console.log("error post");
         console.log(error);
@@ -42836,8 +42839,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 
 
@@ -42848,12 +42849,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   data: function data() {
     return {
-      projet: {
-        title: "",
-        description: "",
-        deadline: "",
-        img_url: ""
-      },
+      projet: this.$props.projetprop,
       image: ""
     };
   },
@@ -42883,33 +42879,32 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this = this;
 
       self = this;
-      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.delete("/projet/delete/" + self.projetprop.id).then(function (response) {
+      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.delete("/projet/delete/" + self.projet.id).then(function (response) {
+        console.log("--DeleteProjet--");
         _this.$el.parentElement.removeChild(_this.$el);
+        console.log("--EndDeleteProjet--");
       }).catch(function (error) {
         console.log(error);
       });
     },
-    initUpdate: function initUpdate() {
-      $("#taskModalUpdate").addClass("is-active");
-      $("#taskModalUpdate").modal();
-    },
-
-    closeModal: function closeModal() {
-      $("#taskModalUpdate").removeClass("modal");
-      $("#taskModalUpdate").removeClass("is-active");
-    },
     updateTask: function updateTask() {
+      var _this2 = this;
+
       var self = this;
-      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post("/projet/edit/" + self.projetprop.id, {
-        title: self.projetprop.title,
-        description: self.projetprop.description,
-        deadline: self.projetprop.deadline,
+      console.log("ID: " + self.projet.id);
+      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post("/projet/edit/" + self.projet.id, {
+        title: self.projet.title,
+        description: self.projet.description,
+        deadline: self.projet.deadline,
         image: self.image,
         img_url: self.img_url
       }).then(function (response) {
-        // console.log("ici");
-        // this.projetprop.img_url = response;
+        _this2.projet = response.data;
+        console.log("--EditProjet--");
+        // this.projet.img_url = response;
         console.log(response);
+        console.log("--EndEditProjet--");
+        $('#myModal-' + _this2.projet.id).modal('hide');
       }).catch(function (error) {
         console.log(error);
       });
@@ -42929,15 +42924,15 @@ var render = function() {
     _c("div", { staticClass: "col-sm-4" }, [
       _c("img", {
         staticStyle: { color: "black" },
-        attrs: { src: _vm.projetprop.img_url, alt: "" }
+        attrs: { src: _vm.projet.img_url, alt: "" }
       }),
       _vm._v(" "),
       _c("div", { staticClass: "title" }, [
-        _c("h2", [_vm._v(_vm._s(_vm.projetprop.title))])
+        _c("h2", [_vm._v(_vm._s(_vm.projet.title))])
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "img-description" }, [
-        _c("p", [_vm._v(_vm._s(_vm.projetprop.description))])
+        _c("p", [_vm._v(_vm._s(_vm.projet.description))])
       ]),
       _vm._v(" "),
       _c(
@@ -42957,10 +42952,11 @@ var render = function() {
           _c(
             "button",
             {
-              on: {
-                click: function($event) {
-                  _vm.initUpdate()
-                }
+              staticClass: "btn btn-default",
+              attrs: {
+                type: "button",
+                "data-toggle": "modal",
+                "data-target": "#myModal-" + _vm.projet.id
               }
             },
             [
@@ -42974,6 +42970,8 @@ var render = function() {
           _c(
             "button",
             {
+              staticClass: "btn btn-default",
+              attrs: { type: "button" },
               on: {
                 click: function($event) {
                   $event.preventDefault()
@@ -42996,207 +42994,201 @@ var render = function() {
       "div",
       {
         staticClass: "modal fade",
-        attrs: { id: "taskModalUpdate", role: "dialog" }
+        attrs: { id: "myModal-" + _vm.projet.id, role: "dialog" }
       },
       [
         _c("div", { staticClass: "modal-dialog" }, [
           _c("div", { staticClass: "modal-content" }, [
             _vm._m(0),
             _vm._v(" "),
-            _c(
-              "form",
-              {
-                attrs: {
-                  action: "",
-                  method: "POST",
-                  enctype: "multipart/form-data"
-                },
-                on: {
-                  submit: function($event) {
-                    $event.preventDefault()
-                    _vm.updateTask($event)
-                  }
-                }
-              },
-              [
-                _c("div", { staticClass: "modal-body" }, [
-                  _c("div", { staticClass: "form-group" }, [
-                    _c(
-                      "label",
-                      { staticClass: "control-label", attrs: { for: "title" } },
-                      [_vm._v("Title")]
-                    ),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.projetprop.title,
-                          expression: "projetprop.title"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      attrs: {
-                        type: "text",
-                        name: "title",
-                        id: "title",
-                        required: ""
-                      },
-                      domProps: { value: _vm.projetprop.title },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.projetprop, "title", $event.target.value)
-                        }
-                      }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group" }, [
-                    _c(
-                      "label",
-                      { staticClass: "control-label", attrs: { for: "image" } },
-                      [_vm._v("Image")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "label",
-                      {
-                        staticClass: "btn btn-default form-control",
-                        staticStyle: { "padding-bottom": "30%" }
-                      },
-                      [
-                        !_vm.image
-                          ? _c("div", [
-                              _c("img", {
-                                staticStyle: {
-                                  "max-width": "200px",
-                                  "max-height": "200px"
-                                },
-                                attrs: { src: _vm.projetprop.img_url, alt: "" }
-                              }),
-                              _c("br"),
-                              _vm._v(" "),
-                              _c("input", {
-                                ref: "myimg",
-                                attrs: {
-                                  accept: "image/*",
-                                  name: "image",
-                                  id: "image",
-                                  type: "file",
-                                  multiple: "multiple"
-                                },
-                                on: { change: _vm.onFileChange }
-                              })
-                            ])
-                          : _c("div", [
-                              _c("img", {
-                                staticStyle: {
-                                  "max-width": "200px",
-                                  "max-height": "200px"
-                                },
-                                attrs: { src: _vm.image }
-                              }),
-                              _vm._v(" "),
-                              _c("button", { on: { click: _vm.removeImage } }, [
-                                _vm._v("Remove image")
-                              ])
-                            ])
-                      ]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group" }, [
-                    _c(
-                      "label",
-                      {
-                        staticClass: "control-label",
-                        attrs: { for: "description" }
-                      },
-                      [_vm._v("Description")]
-                    ),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.projetprop.description,
-                          expression: "projetprop.description"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      attrs: {
-                        type: "text",
-                        name: "description",
-                        id: "description",
-                        required: ""
-                      },
-                      domProps: { value: _vm.projetprop.description },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.projetprop,
-                            "description",
-                            $event.target.value
-                          )
-                        }
-                      }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group" }, [
-                    _c(
-                      "label",
-                      {
-                        staticClass: "control-label",
-                        attrs: { for: "deadline" }
-                      },
-                      [_vm._v("Deadline")]
-                    ),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.projetprop.deadline,
-                          expression: "projetprop.deadline"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      attrs: {
-                        type: "text",
-                        name: "deadline",
-                        id: "deadline",
-                        required: ""
-                      },
-                      domProps: { value: _vm.projetprop.deadline },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.projetprop,
-                            "deadline",
-                            $event.target.value
-                          )
-                        }
-                      }
-                    })
-                  ])
-                ]),
+            _c("div", { staticClass: "modal-body" }, [
+              _c("div", { staticClass: "form-group" }, [
+                _c(
+                  "label",
+                  { staticClass: "control-label", attrs: { for: "title" } },
+                  [_vm._v("Title")]
+                ),
                 _vm._v(" "),
-                _vm._m(1)
-              ]
-            )
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.projet.title,
+                      expression: "projet.title"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "text",
+                    name: "title",
+                    id: "title",
+                    required: ""
+                  },
+                  domProps: { value: _vm.projet.title },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.projet, "title", $event.target.value)
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c(
+                  "label",
+                  { staticClass: "control-label", attrs: { for: "image" } },
+                  [_vm._v("Image")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  {
+                    staticClass: "btn btn-default form-control",
+                    staticStyle: { "padding-bottom": "30%" }
+                  },
+                  [
+                    !_vm.image
+                      ? _c("div", [
+                          _c("img", {
+                            staticStyle: {
+                              "max-width": "200px",
+                              "max-height": "200px"
+                            },
+                            attrs: { src: _vm.projet.img_url, alt: "" }
+                          }),
+                          _c("br"),
+                          _vm._v(" "),
+                          _c("input", {
+                            ref: "myimg",
+                            attrs: {
+                              accept: "image/*",
+                              name: "image",
+                              id: "image",
+                              type: "file",
+                              multiple: "multiple"
+                            },
+                            on: { change: _vm.onFileChange }
+                          })
+                        ])
+                      : _c("div", [
+                          _c("img", {
+                            staticStyle: {
+                              "max-width": "200px",
+                              "max-height": "200px"
+                            },
+                            attrs: { src: _vm.image }
+                          }),
+                          _vm._v(" "),
+                          _c("button", { on: { click: _vm.removeImage } }, [
+                            _vm._v("Remove image")
+                          ])
+                        ])
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c(
+                  "label",
+                  {
+                    staticClass: "control-label",
+                    attrs: { for: "description" }
+                  },
+                  [_vm._v("Description")]
+                ),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.projet.description,
+                      expression: "projet.description"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "text",
+                    name: "description",
+                    id: "description",
+                    required: ""
+                  },
+                  domProps: { value: _vm.projet.description },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.projet, "description", $event.target.value)
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c(
+                  "label",
+                  { staticClass: "control-label", attrs: { for: "deadline" } },
+                  [_vm._v("Deadline")]
+                ),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.projet.deadline,
+                      expression: "projet.deadline"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "text",
+                    name: "deadline",
+                    id: "deadline",
+                    required: ""
+                  },
+                  domProps: { value: _vm.projet.deadline },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.projet, "deadline", $event.target.value)
+                    }
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "modal-footer" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-default",
+                  attrs: { type: "button" },
+                  on: {
+                    click: function($event) {
+                      _vm.updateTask()
+                    }
+                  }
+                },
+                [_vm._v("Save")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-default",
+                  attrs: { type: "button", "data-dismiss": "modal" }
+                },
+                [_vm._v("Close")]
+              )
+            ])
           ])
         ])
       ]
@@ -43219,27 +43211,6 @@ var staticRenderFns = [
       ),
       _vm._v(" "),
       _c("h4", { staticClass: "modal-title" }, [_vm._v("Mode Edit")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-footer" }, [
-      _c(
-        "button",
-        { staticClass: "btn btn-default", attrs: { type: "submit" } },
-        [_vm._v("Edit")]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-default",
-          attrs: { type: "button", "data-dismiss": "modal" }
-        },
-        [_vm._v("Close")]
-      )
     ])
   }
 ]

@@ -30,9 +30,10 @@ export default {
     axios
       .get("/projet/read")
       .then(function(response) {
-        console.log("--GETprojet--");
+        console.log("--GETprojetRead--");
         console.dir(response.data);
         self.projets = response.data;
+        console.log("--EndGetProjetRead--");
       })
       .catch(function(error) {
         console.log("error log");
@@ -56,9 +57,11 @@ export default {
       axios
         .post("/projet/insert", self.oneprojet)
         .then(function(response) {
-          console.log("--POSTprojet--");
-          console.dir(response.data);
+          console.log("--POSTprojetInsert--");
+          console.dir(response.data);   
           self.projets.push(response.data);
+          console.dir(self.projets);
+          console.log("--EndPostProjetInsert--")
         })
         .catch(function(error) {
           console.log("error post");
