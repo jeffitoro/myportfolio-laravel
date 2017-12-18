@@ -1,7 +1,7 @@
 <template>
   <div>
 
-    <button class="button is-info" v-on:click.prevent="addProjet" v-show="isconnect">
+    <button type="button" class="btn-add btn btn-default" v-on:click.prevent="addProjet" v-show="isconnect">
       <i class="fa fa-plus-square" aria-hidden="true"></i>  
       <span> Add</span>
     </button>

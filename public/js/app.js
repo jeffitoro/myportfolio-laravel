@@ -43243,7 +43243,8 @@ var render = function() {
             expression: "isconnect"
           }
         ],
-        staticClass: "button is-info",
+        staticClass: "btn-add btn btn-default",
+        attrs: { type: "button" },
         on: {
           click: function($event) {
             $event.preventDefault()

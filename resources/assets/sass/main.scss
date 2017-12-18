@@ -239,11 +239,14 @@ header{
     }
 }
 
-.projets{
+.projets,.messages{
     color: $colorFond;
     padding: 40px 5%;
     text-align: center;
     font-family: 'Raleway';
+    .btn-add{
+        margin-bottom: 20px;
+    }
     #titre{
         text-align: left;
         font-family: 'Montserrat';

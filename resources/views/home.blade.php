@@ -16,12 +16,13 @@
 
 	<div class="tab-content">
 		<div id="home" class="tab-pane fade">
-			<h3>HOME</h3>
-			<p>Some content.</p>
+			<div class="col-md-10 col-md-offset-1">
+	    		@include('admin.message')
+		    </div>
 		</div>
 		<div id="menu1" class="tab-pane fade in active">
             <div class="col-md-10 col-md-offset-1">
-	    		@include('projets.projet')
+	    		@include('admin.projet')
 		    </div>
 		</div>
 	</div>
