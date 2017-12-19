@@ -43,8 +43,8 @@
 		</form>
 	</div>
 
+	<div id="messages">
+		<messages :class="container-fluid"></messages>
+	</div>
 </div>
 
-<div id="messages">
-	<messages :class="container-fluid"></messages>
-</div>

@@ -6,7 +6,7 @@
 			<div class="border"></div>
 		</div>
 	</div>
-		<div id="projets">
-			<projets isconnect="{{ Auth::check() }}"></projets>
-		</div>
+	<div id="projets">
+		<projets isconnect="{{ Auth::check() }}"></projets>
+	</div>
 </section>

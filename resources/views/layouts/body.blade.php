@@ -16,7 +16,7 @@
 	@include('partials.header') 
 	@yield('content') 
 	{{-- @include('partials.footer') --}} 
-	@include('projets.projet')
+	@include('admin.projet')
 	@include('forms.form')
 	<script src="{{url('js/app.js')}}"></script>
 </body>

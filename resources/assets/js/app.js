@@ -18,8 +18,8 @@ window.Vue = require('vue');
  */
 
 Vue.component('projets', require('./components/Projets.vue'));
+Vue.component('messages', require('./components/Messages.vue'));
+let app = new Vue({el: '#projets'});
+let app2 = new Vue({el: '#messages'})
 
-let app = new Vue({
-    el: '#projets',
-    // render: h => h(Projets)
-});
+

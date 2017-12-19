@@ -7975,6 +7975,10 @@ header .bar-button {
   width: 100%;
 }
 
+.projets #messages .search, .messages #messages .search {
+  margin-top: 40px;
+}
+
 .admin .nav-center {
   text-align: center;
 }
