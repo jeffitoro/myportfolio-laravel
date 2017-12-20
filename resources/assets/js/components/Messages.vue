@@ -1,7 +1,7 @@
 <template>
   <div>
     <input type="text" class="form-control search" name="filter" id="filter" v-model="filter" placeholder="search..." @keyup="autoComplete">
-    <one-message v-for="(message,index) in messages" :index="index" v-bind:key="message.id" v-bind:messageprop='message' v-model="filter"></one-message>
+    <one-message v-for="(message,index) in messages" :index="index" v-bind:key="message.id" v-bind:messageprop='message'></one-message>
   </div>
 </template>
 

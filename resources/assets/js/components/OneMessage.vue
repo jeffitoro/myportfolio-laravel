@@ -13,10 +13,10 @@
 		</div>
 		<div class="col-md-12">
 			<div class="col-md-3 col-md-offset-3">
-				<button type="submit" class="btn btn-success btn-block">Save</button>
+				<button type="submit" class="btn btn-success btn-block">SendToMe</button>
 			</div>
 			<div class="col-md-3">
-				<button type="button" class="btn btn-danger btn-block">Delete</button>
+				<button type="button" class="btn btn-danger btn-block" @click="deleteMsg">Delete</button>
 			</div>
 		</div>
 	</div>
@@ -24,6 +24,21 @@
 
 <script>
 export default {
-  props: ["messageprop", "index"]
+  props: ["messageprop", "index"],
+  methods:{
+	deleteMsg:function(){
+		self = this;
+		axios
+        .delete("messages/delete/" + self.$props.messageprop.id)
+        .then(response => {
+          console.log("--DeleteProjet--");
+          this.$el.parentElement.removeChild(this.$el);
+          console.log("--EndDeleteProjet--");
+        })
+        .catch(error => {
+          console.log(error);
+        });
+	}
+  }
 };
 </script>

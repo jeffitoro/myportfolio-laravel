@@ -43478,7 +43478,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["messageprop", "index"]
+  props: ["messageprop", "index"],
+  methods: {
+    deleteMsg: function deleteMsg() {
+      var _this = this;
+
+      self = this;
+      axios.delete("messages/delete/" + self.$props.messageprop.id).then(function (response) {
+        console.log("--DeleteProjet--");
+        _this.$el.parentElement.removeChild(_this.$el);
+        console.log("--EndDeleteProjet--");
+      }).catch(function (error) {
+        console.log(error);
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -43506,7 +43520,21 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _vm._m(2)
+    _c("div", { staticClass: "col-md-12" }, [
+      _vm._m(2),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-3" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-danger btn-block",
+            attrs: { type: "button" },
+            on: { click: _vm.deleteMsg }
+          },
+          [_vm._v("Delete")]
+        )
+      ])
+    ])
   ])
 }
 var staticRenderFns = [
@@ -43526,28 +43554,12 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-12" }, [
-      _c("div", { staticClass: "col-md-3 col-md-offset-3" }, [
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-success btn-block",
-            attrs: { type: "submit" }
-          },
-          [_vm._v("Save")]
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-3" }, [
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-danger btn-block",
-            attrs: { type: "button" }
-          },
-          [_vm._v("Delete")]
-        )
-      ])
+    return _c("div", { staticClass: "col-md-3 col-md-offset-3" }, [
+      _c(
+        "button",
+        { staticClass: "btn btn-success btn-block", attrs: { type: "submit" } },
+        [_vm._v("SendToMe")]
+      )
     ])
   }
 ]
@@ -43602,14 +43614,7 @@ var render = function() {
       _vm._l(_vm.messages, function(message, index) {
         return _c("one-message", {
           key: message.id,
-          attrs: { index: index, messageprop: message },
-          model: {
-            value: _vm.filter,
-            callback: function($$v) {
-              _vm.filter = $$v
-            },
-            expression: "filter"
-          }
+          attrs: { index: index, messageprop: message }
         })
       })
     ],

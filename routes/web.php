@@ -48,3 +48,4 @@ Route::post('projet/edit/{id}','ProjetsController@update');
 
 Route::get('messages/read', 'ContactsController@index');
 Route::get('messages/search', 'ContactsController@show');
+Route::delete('messages/delete/{id}', 'ContactsController@destroy');
