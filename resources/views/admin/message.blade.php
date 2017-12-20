@@ -44,7 +44,7 @@
 	</div>
 
 	<div id="messages">
-		<messages :class="container-fluid"></messages>
+		<messages></messages>
 	</div>
 </div>
 

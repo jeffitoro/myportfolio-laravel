@@ -7979,6 +7979,17 @@ header .bar-button {
   margin-top: 40px;
 }
 
+.projets #messages .one-msg, .messages #messages .one-msg {
+  margin: 20px 0;
+  padding: 10px 0;
+  background-color: #eeeeee;
+  border-radius: 25px;
+}
+
+.projets #messages .one-msg .msg, .messages #messages .one-msg .msg {
+  padding: 30px 0;
+}
+
 .admin .nav-center {
   text-align: center;
 }

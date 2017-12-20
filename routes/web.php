@@ -45,3 +45,6 @@ Route::post('projet/insert', [
 Route::get('projet/read', 'ProjetsController@index');
 Route::delete('projet/delete/{id}', 'ProjetsController@destroy');
 Route::post('projet/edit/{id}','ProjetsController@update');
+
+Route::get('messages/read', 'ContactsController@index');
+Route::get('messages/search', 'ContactsController@show');

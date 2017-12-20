@@ -14,7 +14,8 @@ class ContactsController extends Controller
      */
     public function index()
     {
-        // $contacts= Contact::all();
+        $contacts= Contact::all();
+        return $contacts;
         // return view('/home',compact('contacts'));
     }
 
@@ -48,9 +49,14 @@ class ContactsController extends Controller
      * @param  \App\Contact  $contact
      * @return \Illuminate\Http\Response
      */
-    public function show(Contact $contact)
+    public function show()
     {
-        //
+        $filter = request('filter');
+        $users = Contact::where('email','like','%'.$filter.'%')->get();
+        if(!$users){
+            $users = request('messages');
+        }
+        return $users;
     }
 
     /**
