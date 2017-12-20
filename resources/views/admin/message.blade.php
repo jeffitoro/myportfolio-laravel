@@ -1,23 +1,34 @@
 <div class="messages container-fluid">
 	<div id="titre">
-			<h3>Messages</h3>
-			<div class="border"></div>
+		<h3>Messages</h3>
+		<div class="border"></div>
 	</div>
 
-  <button class="btn btn-default" data-toggle="collapse" data-target="#formulaire">Send Message</button>
+	<button class="btn btn-default" data-toggle="collapse" data-target="#formulaire">Send Message</button>
 
 	<div id="formulaire" class="collapse">
 		<form action="" method="POST" class="form-horizontal">
 			{{csrf_field()}}
 			<div class="row">
 				<div class="col-sm-4">
-					<div class="form-group row {{ $errors->has('email')?'has-error':'' }}">
+					<div class="form-group row">
+						<label class="col-md-1 control-label">Contacts: </label>
+						<div class="col-sm-12">
+							<select class="selectpicker btn" for="selected" href="">
+								<option value="">TheContacts</option>
+								@foreach($users as $user)
+									<option value="{{$user->email}}"name="selected"id="selected">{{$user->email}}</option>
+								@endforeach
+							</select>
+						</div>
+					</div>
+					{{--  <div class="form-group row {{ $errors->has('email')?'has-error':'' }}">
 						<label for="email" class="col-md-1 control-label">Email: </label>
 						<div class="col-sm-12">
 							<input class="form-control" type="text" id="email" placeholder="{{ $errors->has('email')?$errors->first('email',':message'):'example_name@gmail.com' }}"
 							 name="email" required>
 						</div>
-					</div>
+					</div>  --}}
 					<div class="form-group row {{ $errors->has('subject')?'has-error':'' }}">
 						<label for="subject" class="col-md-1 control-label">Subject: </label>
 						<br>
@@ -47,4 +58,3 @@
 		<messages></messages>
 	</div>
 </div>
-

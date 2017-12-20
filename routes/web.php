@@ -36,6 +36,7 @@ Route::post('/', [
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::post('messages/selection', 'HomeController@selection');
 
 // Route::resource('/projet/insert','ProjetsController');
 Route::post('projet/insert', [
