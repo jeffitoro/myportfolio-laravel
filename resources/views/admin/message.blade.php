@@ -14,7 +14,10 @@
 					<div class="form-group row">
 						<label class="col-md-1 control-label">Contacts: </label>
 						<div class="col-sm-12">
-							<select class="selectpicker btn" name="selected">
+              @if($errors->has('email'))
+                <span>{{$errors->first('email','Select one contact')}}</span>
+              @endif
+							<select class="selectpicker btn" name="email">
 								<option value="1">TheContacts</option>
 								@foreach($users as $user)
 									<option value="{{$user->email}}">{{$user->email}}</option>
@@ -22,13 +25,6 @@
 							</select>
 						</div>
 					</div>
-					{{--  <div class="form-group row {{ $errors->has('email')?'has-error':'' }}">
-						<label for="email" class="col-md-1 control-label">Email: </label>
-						<div class="col-sm-12">
-							<input class="form-control" type="text" id="email" placeholder="{{ $errors->has('email')?$errors->first('email',':message'):'example_name@gmail.com' }}"
-							 name="email" required>
-						</div>
-					</div>  --}}
 					<div class="form-group row {{ $errors->has('subject')?'has-error':'' }}">
 						<label for="subject" class="col-md-1 control-label">Subject: </label>
 						<br>

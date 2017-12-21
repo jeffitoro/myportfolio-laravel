@@ -92,10 +92,5 @@ class ContactsController extends Controller
     {
         $contact = Contact::findOrFail($id);
         $contact->delete();
-    }
-
-    public function showContacts(){
-        $users = DB::table('contacts')->select('name')->distinct()->get();
-        return view('admin.message',compact('users'));
-    }
+    }   
 }

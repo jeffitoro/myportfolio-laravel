@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\ContactRequest;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ContactMail;
 
@@ -12,14 +12,14 @@ class ContactMailController extends Controller
         return view('email.contact');
     }
 
-    public function store(Request $request){
+    public function store(ContactRequest $request){
         $contact = [
-            'email' => request('selected'),
+            'email' => request('email'),
             'subject' => request('subject'),
             'message' => request('message')
         ];
         $request->session()->flash('alert-success', 'Message is sended');      
-        Mail::to('jeff-oro@hotmail.com')->send(new ContactMail($contact));
+        Mail::to(request('email'))->send(new ContactMail($contact));
         return redirect('/home');
     }
 }

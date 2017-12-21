@@ -8,12 +8,12 @@
 			</div>
 			<div class="col-md-8">
 				<h3><u>Message</u></h3>
-				<p>{{messageprop.message}}</p>
+				<p id="onemessage">{{messageprop.message}}</p>
 			</div>
 		</div>
 		<div class="col-md-12">
 			<div class="col-md-3 col-md-offset-3">
-				<button type="submit" class="btn btn-success btn-block">SendToMe</button>
+				<button type="submit" class="btn btn-success btn-block" @click="sendMail">SendToMe</button>
 			</div>
 			<div class="col-md-3">
 				<button type="button" class="btn btn-danger btn-block" @click="deleteMsg">Delete</button>
@@ -38,6 +38,17 @@ export default {
         .catch(error => {
           console.log(error);
         });
+	},
+	sendMail:function(){
+		self=this;
+		axios
+			.post("messages/mail",{
+				email: self.$props.messageprop.email,
+				subject: self.$props.messageprop.subject,
+				message: self.$props.messageprop.message,				
+			})
+			.then(response => {console.log(response);})
+      .catch(error => {console.log(error);});
 	}
   }
 };

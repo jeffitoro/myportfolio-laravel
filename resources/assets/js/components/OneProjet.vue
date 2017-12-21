@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <!-- <div> -->
     <div class="col-sm-4">
 		  <!-- <img :src=projet.img_url alt="" style="color:black"> -->
-		  <img :src='projet.img_url' alt="" style="color:black">
+		  <img :src='projet.img_url' class="img-responsive" alt="" style="color:black">
       <div class="title"><h2>{{ projet.title }}</h2></div>      
       <div class="img-description">
         <p>{{ projet.description }}</p>
@@ -15,7 +15,7 @@
           <i class="fa fa-trash-o" aria-hidden="true"></i>
         </button>
       </div>
-    </div>
+    <!-- </div> -->
 
     <!-- Modal -->
     <div class="modal fade" :id="'myModal-'+projet.id" role="dialog">
@@ -128,7 +128,6 @@ export default {
         .then(response => {
           this.projet = response.data;
           console.log("--EditProjet--");
-          // this.projet.img_url = response;
           console.log(response);
           console.log("--EndEditProjet--");
           $('#myModal-'+this.projet.id).modal('hide');

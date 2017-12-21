@@ -42899,7 +42899,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }).then(function (response) {
         _this2.projet = response.data;
         console.log("--EditProjet--");
-        // this.projet.img_url = response;
         console.log(response);
         console.log("--EndEditProjet--");
         $('#myModal-' + _this2.projet.id).modal('hide');
@@ -42918,75 +42917,74 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", { staticClass: "col-sm-4" }, [
-      _c("img", {
-        staticStyle: { color: "black" },
-        attrs: { src: _vm.projet.img_url, alt: "" }
-      }),
-      _vm._v(" "),
-      _c("div", { staticClass: "title" }, [
-        _c("h2", [_vm._v(_vm._s(_vm.projet.title))])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "img-description" }, [
-        _c("p", [_vm._v(_vm._s(_vm.projet.description))])
-      ]),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          directives: [
-            {
-              name: "show",
-              rawName: "v-show",
-              value: _vm.isconnect,
-              expression: "isconnect"
-            }
-          ],
-          staticClass: "buttons"
-        },
-        [
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-default",
-              attrs: {
-                type: "button",
-                "data-toggle": "modal",
-                "data-target": "#myModal-" + _vm.projet.id
-              }
-            },
-            [
-              _c("i", {
-                staticClass: "fa fa-pencil-square-o",
-                attrs: { "aria-hidden": "true" }
-              })
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-default",
-              attrs: { type: "button" },
-              on: {
-                click: function($event) {
-                  $event.preventDefault()
-                  _vm.deleteProjet($event)
-                }
-              }
-            },
-            [
-              _c("i", {
-                staticClass: "fa fa-trash-o",
-                attrs: { "aria-hidden": "true" }
-              })
-            ]
-          )
-        ]
-      )
+  return _c("div", { staticClass: "col-sm-4" }, [
+    _c("img", {
+      staticClass: "img-responsive",
+      staticStyle: { color: "black" },
+      attrs: { src: _vm.projet.img_url, alt: "" }
+    }),
+    _vm._v(" "),
+    _c("div", { staticClass: "title" }, [
+      _c("h2", [_vm._v(_vm._s(_vm.projet.title))])
     ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "img-description" }, [
+      _c("p", [_vm._v(_vm._s(_vm.projet.description))])
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.isconnect,
+            expression: "isconnect"
+          }
+        ],
+        staticClass: "buttons"
+      },
+      [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-default",
+            attrs: {
+              type: "button",
+              "data-toggle": "modal",
+              "data-target": "#myModal-" + _vm.projet.id
+            }
+          },
+          [
+            _c("i", {
+              staticClass: "fa fa-pencil-square-o",
+              attrs: { "aria-hidden": "true" }
+            })
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-default",
+            attrs: { type: "button" },
+            on: {
+              click: function($event) {
+                $event.preventDefault()
+                _vm.deleteProjet($event)
+              }
+            }
+          },
+          [
+            _c("i", {
+              staticClass: "fa fa-trash-o",
+              attrs: { "aria-hidden": "true" }
+            })
+          ]
+        )
+      ]
+    ),
     _vm._v(" "),
     _c(
       "div",
@@ -43385,15 +43383,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this = this;
 
       self = this;
-      if (this.filter.length > 2) {
-        __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('messages/search', {
-          params: { filter: self.filter, messages: self.messages } }).then(function (response) {
-          _this.messages = response.data;
-          console.log(response.data);
-        }).catch(function (error) {
-          console.log(error);
-        });
-      }
+      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get("messages/search", {
+        params: { filter: self.filter, messages: self.messages }
+      }).then(function (response) {
+        _this.messages = response.data;
+        console.dir(response.data);
+        if (!response.data.length && !document.getElementById('msg-empty')) {
+          var span = document.createElement('span');
+          var textnode = document.createTextNode("I Found Any Meesage With this Name.. !!!");
+          span.appendChild(textnode);
+          span.id = "msg-empty";
+          document.getElementById('messages').appendChild(span);
+        }
+      }).catch(function (error) {
+        console.log(error);
+      });
+      console.log("taille filter: " + this.filter.length);
     }
   }
 });
@@ -43478,21 +43483,33 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["messageprop", "index"],
-  methods: {
-    deleteMsg: function deleteMsg() {
-      var _this = this;
+	props: ["messageprop", "index"],
+	methods: {
+		deleteMsg: function deleteMsg() {
+			var _this = this;
 
-      self = this;
-      axios.delete("messages/delete/" + self.$props.messageprop.id).then(function (response) {
-        console.log("--DeleteProjet--");
-        _this.$el.parentElement.removeChild(_this.$el);
-        console.log("--EndDeleteProjet--");
-      }).catch(function (error) {
-        console.log(error);
-      });
-    }
-  }
+			self = this;
+			axios.delete("messages/delete/" + self.$props.messageprop.id).then(function (response) {
+				console.log("--DeleteProjet--");
+				_this.$el.parentElement.removeChild(_this.$el);
+				console.log("--EndDeleteProjet--");
+			}).catch(function (error) {
+				console.log(error);
+			});
+		},
+		sendMail: function sendMail() {
+			self = this;
+			axios.post("messages/mail", {
+				email: self.$props.messageprop.email,
+				subject: self.$props.messageprop.subject,
+				message: self.$props.messageprop.message
+			}).then(function (response) {
+				console.log(response);
+			}).catch(function (error) {
+				console.log(error);
+			});
+		}
+	}
 });
 
 /***/ }),
@@ -43516,12 +43533,24 @@ var render = function() {
       _c("div", { staticClass: "col-md-8" }, [
         _vm._m(1),
         _vm._v(" "),
-        _c("p", [_vm._v(_vm._s(_vm.messageprop.message))])
+        _c("p", { attrs: { id: "onemessage" } }, [
+          _vm._v(_vm._s(_vm.messageprop.message))
+        ])
       ])
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "col-md-12" }, [
-      _vm._m(2),
+      _c("div", { staticClass: "col-md-3 col-md-offset-3" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-success btn-block",
+            attrs: { type: "submit" },
+            on: { click: _vm.sendMail }
+          },
+          [_vm._v("SendToMe")]
+        )
+      ]),
       _vm._v(" "),
       _c("div", { staticClass: "col-md-3" }, [
         _c(
@@ -43549,18 +43578,6 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("h3", [_c("u", [_vm._v("Message")])])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-3 col-md-offset-3" }, [
-      _c(
-        "button",
-        { staticClass: "btn btn-success btn-block", attrs: { type: "submit" } },
-        [_vm._v("SendToMe")]
-      )
-    ])
   }
 ]
 render._withStripped = true
@@ -43602,6 +43619,7 @@ var render = function() {
         domProps: { value: _vm.filter },
         on: {
           keyup: _vm.autoComplete,
+          onchange: _vm.autoComplete,
           input: function($event) {
             if ($event.target.composing) {
               return

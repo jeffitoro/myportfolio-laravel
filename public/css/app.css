@@ -7990,6 +7990,12 @@ header .bar-button {
   padding: 30px 0;
 }
 
+.projets #messages #onemessage, .messages #messages #onemessage {
+  margin: 5px;
+  max-width: 70ch;
+  overflow: hidden;
+}
+
 .admin .nav-center {
   text-align: center;
 }
