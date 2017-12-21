@@ -14,13 +14,12 @@ class ContactMailController extends Controller
 
     public function store(Request $request){
         $contact = [
-            'nom' => 'Jeff',
-            'email' => 'jeff-oro@hotmail.com',
-            'message' => 'Je voulais vous dire que votre site est magnifique !'
+            'email' => request('selected'),
+            'subject' => request('subject'),
+            'message' => request('message')
         ];
-        
-        
+        $request->session()->flash('alert-success', 'Message is sended');      
         Mail::to('jeff-oro@hotmail.com')->send(new ContactMail($contact));
-        return view('confirm');
+        return redirect('/home');
     }
 }

@@ -51,15 +51,4 @@ Route::get('messages/read', 'ContactsController@index');
 Route::get('messages/search', 'ContactsController@show');
 Route::delete('messages/delete/{id}', 'ContactsController@destroy');
 
-
-Route::get('/test-contact', function () {
-    return new App\Mail\ContactMail([
-        'nom' => 'Jeff',
-        'email' => 'jeff-oro@hotmail.com',
-        'message' => 'Je voulais vous dire que votre site est magnifique !'
-    ]);
-});
-Route::get('/test-mail', [
-    "uses" => "ContactMailController@store"
-]);
-
+Route::post('/home','ContactMailController@store');

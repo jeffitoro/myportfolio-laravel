@@ -7,17 +7,17 @@
 	<button class="btn btn-default" data-toggle="collapse" data-target="#formulaire">Send Message</button>
 
 	<div id="formulaire" class="collapse">
-		<form action="" method="POST" class="form-horizontal">
+		<form action="{{action('ContactMailController@store')}}" method="POST" class="form-horizontal">
 			{{csrf_field()}}
 			<div class="row">
 				<div class="col-sm-4">
 					<div class="form-group row">
 						<label class="col-md-1 control-label">Contacts: </label>
 						<div class="col-sm-12">
-							<select class="selectpicker btn" for="selected" href="">
-								<option value="">TheContacts</option>
+							<select class="selectpicker btn" name="selected">
+								<option value="1">TheContacts</option>
 								@foreach($users as $user)
-									<option value="{{$user->email}}"name="selected"id="selected">{{$user->email}}</option>
+									<option value="{{$user->email}}">{{$user->email}}</option>
 								@endforeach
 							</select>
 						</div>
@@ -48,7 +48,7 @@
 					</div>
 				</div>
 				<div class="col-md-12">
-					<button type="submit" class="btn btn-default btn-block">Envoyer</button>
+					<button type="submit" name="submit" class="btn btn-default btn-block">Envoyer</button>
 				</div>
 			</div>
 		</form>
