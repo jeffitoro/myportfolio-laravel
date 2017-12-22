@@ -78,16 +78,6 @@ class ProjetsController extends Controller
         $projet->title = request('title');
         $projet->description = request('description');
         $projet->deadline = request('deadline');
-        // $projet->img_url = request('img_url');
-        
-        // remove "data:image/png;base64,"
-        $image_content = base64_decode(str_replace("data:image/png;base64,", "", $request->image)); 
-        // create temporary file
-        $tempfile = tmpfile(); 
-        // fill data to temporary file
-        fwrite($tempfile, $image_content);
-        $metaDatas = stream_get_meta_data($tempfile);
-        $tmpFilename = $metaDatas['uri'];
 
         $projet->clearMediaCollection();
         
