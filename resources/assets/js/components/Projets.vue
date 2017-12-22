@@ -6,9 +6,7 @@
       <span> Add</span>
     </button>
     <div class="row">
-		  <div class="col-sm-12">
         <one-projet :isconnect="isconnect" v-for="(projet,index) in projets" v-bind:key="projet.id" v-bind:projetprop="projet" :index="index"></one-projet>
-    	</div>
 	  </div>
   </div>
 </template>

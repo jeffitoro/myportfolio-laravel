@@ -7971,10 +7971,6 @@ header .bar-button {
   width: 20%;
 }
 
-.projets img, .messages img {
-  width: 100%;
-}
-
 .projets #messages .search, .messages #messages .search {
   margin-top: 40px;
 }

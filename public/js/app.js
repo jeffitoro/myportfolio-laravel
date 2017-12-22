@@ -42656,8 +42656,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 
 
@@ -42830,13 +42828,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -42901,7 +42892,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         console.log("--EditProjet--");
         console.log(response);
         console.log("--EndEditProjet--");
-        $('#myModal-' + _this2.projet.id).modal('hide');
+        $("#myModal-" + _this2.projet.id).modal("hide");
       }).catch(function (error) {
         console.log(error);
       });
@@ -42919,7 +42910,6 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "col-sm-4" }, [
     _c("img", {
-      staticClass: "img-responsive",
       staticStyle: { color: "black" },
       attrs: { src: _vm.projet.img_url, alt: "" }
     }),
@@ -43051,8 +43041,8 @@ var render = function() {
                       ? _c("div", [
                           _c("img", {
                             staticStyle: {
-                              "max-width": "200px",
-                              "max-height": "200px"
+                              "max-width": "128px",
+                              "max-height": "128px"
                             },
                             attrs: { src: _vm.projet.img_url, alt: "" }
                           }),
@@ -43073,8 +43063,8 @@ var render = function() {
                       : _c("div", [
                           _c("img", {
                             staticStyle: {
-                              "max-width": "200px",
-                              "max-height": "200px"
+                              "max-width": "128px",
+                              "max-height": "128px"
                             },
                             attrs: { src: _vm.image }
                           }),
@@ -43258,22 +43248,16 @@ var render = function() {
       ]
     ),
     _vm._v(" "),
-    _c("div", { staticClass: "row" }, [
-      _c(
-        "div",
-        { staticClass: "col-sm-12" },
-        _vm._l(_vm.projets, function(projet, index) {
-          return _c("one-projet", {
-            key: projet.id,
-            attrs: {
-              isconnect: _vm.isconnect,
-              projetprop: projet,
-              index: index
-            }
-          })
+    _c(
+      "div",
+      { staticClass: "row" },
+      _vm._l(_vm.projets, function(projet, index) {
+        return _c("one-projet", {
+          key: projet.id,
+          attrs: { isconnect: _vm.isconnect, projetprop: projet, index: index }
         })
-      )
-    ])
+      })
+    )
   ])
 }
 var staticRenderFns = []
@@ -43394,6 +43378,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           span.appendChild(textnode);
           span.id = "msg-empty";
           document.getElementById('messages').appendChild(span);
+        } else if (response.data.length > 0 && document.getElementById('msg-empty')) {
+          document.getElementById("msg-empty").remove();
         }
       }).catch(function (error) {
         console.log(error);

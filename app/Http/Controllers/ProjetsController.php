@@ -88,9 +88,16 @@ class ProjetsController extends Controller
         fwrite($tempfile, $image_content);
         $metaDatas = stream_get_meta_data($tempfile);
         $tmpFilename = $metaDatas['uri'];
+
         $projet->clearMediaCollection();
-        $projet->addMediaFromBase64(request('image'))->usingFileName($projet->img_url)->toMediaCollection();
-        $projet->img_url = $projet->getFirstMediaUrl();
+        
+        $projet
+            ->addMediaFromBase64(request('image'))
+            ->usingFileName($projet->img_url)
+            ->toMediaCollection();
+
+        // echo $projet->getFirstMediaUrl();
+        $projet->img_url = $projet->getFirstMedia()->getUrl('thumb');
         $projet->save();
         return $projet;
     }

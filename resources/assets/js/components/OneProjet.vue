@@ -1,23 +1,16 @@
 <template>
-  <!-- <div> -->
-    <div class="col-sm-4">
-		  <!-- <img :src=projet.img_url alt="" style="color:black"> -->
-		  <img :src='projet.img_url' class="img-responsive" alt="" style="color:black">
-      <div class="title"><h2>{{ projet.title }}</h2></div>      
-      <div class="img-description">
-        <p>{{ projet.description }}</p>
-      </div>
-      <div class="buttons" v-show="isconnect">
-        <button type="button" class="btn btn-default" data-toggle="modal" :data-target="'#myModal-'+projet.id">
-          <i class="fa fa-pencil-square-o" aria-hidden="true"></i>          
-        </button>
-        <button type="button" class="btn btn-default" @click.prevent="deleteProjet">
-          <i class="fa fa-trash-o" aria-hidden="true"></i>
-        </button>
-      </div>
-    <!-- </div> -->
-
-    <!-- Modal -->
+  <div class="col-sm-4">
+		<img :src='projet.img_url' class="" alt="" style="color:black">
+    <div class="title"><h2>{{ projet.title }}</h2></div>      
+    <div class="img-description"><p>{{ projet.description }}</p></div>
+    <div class="buttons" v-show="isconnect">
+      <button type="button" class="btn btn-default" data-toggle="modal" :data-target="'#myModal-'+projet.id">
+        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>          
+      </button>
+      <button type="button" class="btn btn-default" @click.prevent="deleteProjet">
+        <i class="fa fa-trash-o" aria-hidden="true"></i>
+      </button>
+    </div>
     <div class="modal fade" :id="'myModal-'+projet.id" role="dialog">
       <div class="modal-dialog">
         <!-- Modal content-->
@@ -37,11 +30,11 @@
               <label for="image" class="control-label">Image</label>
               <label class="btn btn-default form-control" style="padding-bottom:30%;">
                 <div v-if="!image">
-                  <img :src="projet.img_url" alt="" style="max-width:200px;max-height:200px"/><br>
+                  <img :src="projet.img_url" alt="" style="max-width:128px;max-height:128px"/><br>
                   <input accept="image/*" name="image" id="image" type="file" multiple="multiple" @change="onFileChange" ref="myimg">
                 </div>
                 <div v-else>
-                  <img :src="image" style="max-width:200px;max-height:200px"/>
+                  <img :src="image" style="max-width:128px;max-height:128px"/>
                   <button @click="removeImage">Remove image</button>
                   </div>
               </label>
@@ -116,7 +109,7 @@ export default {
     },
     updateTask: function() {
       let self = this;
-      console.log("ID: "+self.projet.id);
+      console.log("ID: " + self.projet.id);
       axios
         .post("/projet/edit/" + self.projet.id, {
           title: self.projet.title,
@@ -130,7 +123,7 @@ export default {
           console.log("--EditProjet--");
           console.log(response);
           console.log("--EndEditProjet--");
-          $('#myModal-'+this.projet.id).modal('hide');
+          $("#myModal-" + this.projet.id).modal("hide");
         })
         .catch(error => {
           console.log(error);

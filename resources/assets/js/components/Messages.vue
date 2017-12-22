@@ -49,6 +49,8 @@ export default {
             span.appendChild(textnode);
             span.id = "msg-empty"
             document.getElementById('messages').appendChild(span);
+          }else if(response.data.length>0 && document.getElementById('msg-empty')){
+            document.getElementById("msg-empty").remove();
           }
         })
         .catch(error => {
