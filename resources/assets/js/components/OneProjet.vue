@@ -1,5 +1,5 @@
 <template>
-  <div class="col-sm-4">
+  <div class="col-sm-3">
 		<img :src='projet.img_url' class="" alt="" style="color:black">
     <div class="title"><h2>{{ projet.title }}</h2></div>      
     <div class="img-description"><p>{{ projet.description }}</p></div>

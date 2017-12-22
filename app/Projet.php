@@ -7,6 +7,7 @@ use Spatie\MediaLibrary\HasMedia\Interfaces\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\Media;
 use Spatie\MediaLibrary\HasMedia\Interfaces\HasMediaConversions;
+use Spatie\Image\Manipulations;
 
 class Projet extends Model implements HasMediaConversions
 {
@@ -16,8 +17,7 @@ class Projet extends Model implements HasMediaConversions
     public function registerMediaConversions(Media $media = null)
     {
         $this->addMediaConversion("thumb")
-            ->width(128)
-            ->height(128)
-            ->keepOriginalImageFormat();
+            ->keepOriginalImageFormat()
+            ->crop(Manipulations::CROP_CENTER, 150, 150);
     }
 }
